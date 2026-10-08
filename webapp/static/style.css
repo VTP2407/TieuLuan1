@@ -1,0 +1,219 @@
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-dark: #f0f2f5;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    --border: #e2e8f0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0.5rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.glass-panel {
+    background: transparent;
+    padding: 0;
+}
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+select, input[type="text"] {
+    width: 100%;
+    padding: 0.4rem;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-main);
+    font-size: 0.8rem;
+    outline: none;
+}
+
+select:focus, input[type="text"]:focus {
+    border-color: var(--primary);
+}
+
+.radio-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.radio-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.radio-card input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4rem;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.radio-card input:checked ~ .card-content {
+    background: #eff6ff;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.dynamic-inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.dynamic-inputs .input-item label {
+    font-size: 0.65rem;
+    margin-bottom: 0.2rem;
+}
+
+.dynamic-inputs .input-item input {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+}
+
+.info-text {
+    grid-column: span 2;
+    text-align: center;
+    color: var(--primary);
+    font-style: italic;
+    background: #eff6ff;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #bfdbfe;
+    font-size: 0.75rem;
+}
+
+.chart-container {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 250px;
+}
+
+.chart-container.hidden {
+    display: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.2rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+}
+
+.submit-btn .loader {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.submit-btn.loading .loader { display: block; }
+.submit-btn.loading span { visibility: hidden; }
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.result-container {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.result-container.hidden {
+    display: none;
+}
+
+.result-container h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: var(--text-main);
+}
+
+.result-box {
+    background: transparent;
+    padding: 0;
+    text-align: center;
+    position: relative;
+}
+
+.result-value {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.2rem;
+}
+
+.result-confidence {
+    font-size: 0.75rem;
+    color: #10b981;
+    font-weight: 600;
+}
+
+.model-badge {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    background: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 600;
+}

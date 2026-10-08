@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng Dự Đoán AI (Deep Learning)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=10">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <main class="glass-panel">
+            <form id="prediction-form">
+                <div class="form-group">
+                    <label for="dataset">Loại Dự Đoán</label>
+                    <select id="dataset" name="dataset" required onchange="updateInputs()">
+                        <option value="" disabled selected>Chọn một loại dự đoán...</option>
+                        <option value="diabetes">Dự đoán bệnh tiểu đường</option>
+                        <option value="housing">Dự đoán giá nhà</option>
+                        <option value="amazon">Dự đoán giá cổ phiếu Amazon</option>
+                        <option value="gold">Dự đoán giá vàng</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="model_type">Mô Hình Cài Đặt</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="model_type" value="scratch" required>
+                            <span class="card-content">NUMPY</span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="model_type" value="keras" required>
+                            <span class="card-content">Keras/TF</span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="model_type" value="pytorch" required>
+                            <span class="card-content">PyTorch</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Vùng chứa input động -->
+                <div id="dynamic-inputs" class="dynamic-inputs">
+                    <!-- Sẽ được thêm bằng JS -->
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    <span>Thực Hiện Dự Đoán</span>
+                    <div class="loader"></div>
+                </button>
+            </form>
+
+            <div id="result-container" class="result-container hidden">
+                <h3>Kết Quả Dự Đoán</h3>
+                
+                <div class="result-box">
+                    <div class="result-value" id="result-value">--</div>
+                    <div class="result-confidence">Độ tin cậy: <span id="result-confidence">--</span>%</div>
+                </div>
+                
+                <div id="chart-container" class="chart-container hidden">
+                    <canvas id="predictionChart"></canvas>
+                </div>
+
+                <div class="model-badge" id="model-badge">Mô hình</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}?v=10"></script>
+</body>
+</html>
